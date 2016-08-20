@@ -200,13 +200,14 @@
     \item stops if $\|u_k^{(t-1)} - u_k^{(t)}\| < \epsilon \ \forall k$.
     \end{inparaenum}
 
-    % \subsection{Clustering Stability}
-    % \begin{inparaitem}[\color{red}\textbullet]
-    % \item dist. between clust. (same data): $d(C,C') := \min_\Pi \frac{1}{2}\|Z-\Pi(Z')\|^2_F$ , $\Pi(Z
-    %     ')$ = row perm. of $Z'$
-    % \item arbitrary sets $\mathbf{X},\mathbf{X'}$ of size $N,N'$: $r := \frac{1}{N'} \min_{\Pi} \{ \sum_{n=1}^{N'} \mathbb{I}_{\{\Pi(\phi(x'_n)) \neq z'_n\} } \}$ ($\phi$: multi-class classifier trained on ($\mathbf{X},\mathbf{Z}$))
-    % \item for $K$ clusters: $\text{stability} := 1 - \frac{r}{r_{rand}}$ (1 good, 0 bad), rand. clust. of equal size: $r_{rand} = \frac{K-1}{K}$.
-    % \end{inparaitem}
+    \subsection{Clustering Stability}
+    mulitple runs return similar clusters
+    \begin{inparaitem}[\color{red}\textbullet]
+    \item dist. between clust. (same data): $d(C,C') := \min_\Pi \frac{1}{2}\|Z-\Pi(Z')\|^2_F$ , $\Pi(Z
+        ')$ = row perm. of $Z'$
+    \item arbitrary sets $\mathbf{X},\mathbf{X'}$ of size $N,N'$: $r := \frac{1}{N'} \min_{\Pi} \{ \sum_{n=1}^{N'} \mathbb{I}_{\{\Pi(\phi(x'_n)) \neq z'_n\} } \}$ ($\phi$: multi-class classifier trained on ($\mathbf{X},\mathbf{Z}$))
+    \item for $K$ clusters: $\text{stability} := 1 - \frac{r}{r_{rand}}$ (1 good, 0 bad), rand. clust. of equal size: $r_{rand} = \frac{K-1}{K}$.
+    \end{inparaitem}
 
     \section{Gaussian Mixture Models (GMM)}
     For GMM let $\boldsymbol{\theta}_k = (\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$; $p_{\theta_k}(\mathbf{x}) = 
@@ -401,7 +402,8 @@
     \item Idea: Approximate $\mathbf{X}$ with $\mathbf{L} + \mathbf{S}$, $\mathbf{L}$ is low-rank, $\mathbf{S}$ is sparse.
     \item $\min_{\mathbf{L},\mathbf{S}}\mathsf{rank}(\mathbf{L}) + \mu \lVert \mathbf{S}\rVert_0$, s. t. $\mathbf{L} + \mathbf{S} = \mathbf{X}$. 
         As non-convex, change to $\min_{\mathbf{L},\mathbf{S}} \|\mathbf{L}\|_\star + \mu \lVert\mathbf{S}\rVert_1$ (\emph{not} the same in general)
-    \item Perfect reconstruction is \emph{not} possible if $\mathbf{S}$ is low-rank, $\mathbf{L}$ is sparse, or $\mathbf{X}$ is low-rank \textit{and} sparse at the same time
+    \item Perfect recovery ($X = S_0 + L_0 = S^\star + L^\star$) is \emph{not} possible if $\mathbf{S}$ is low-rank, 
+        $\mathbf{L}$ is sparse, or $\mathbf{X}$ is low-rank \textit{and} sparse at the same time. Principal components of $\mathbf{L}$ must not be sparse.
     \end{compactitem}
 
     \subsection{Alternating Direction Method of Multipliers (ADMM)}
